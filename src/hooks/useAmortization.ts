@@ -1,16 +1,20 @@
 import { useState, useMemo, useRef } from 'react'
 import { calculateAmortization, type AmortizationParams, type AmortizationSchedule } from '../lib/amortization/amortization'
 
+export type Currency = 'CRC' | 'USD'
+
 export interface FormState {
   principal: string
   annualRate: string
   termMonths: string
+  currency: Currency
 }
 
 const DEFAULTS: FormState = {
   principal: '50000000',
   annualRate: '12',
   termMonths: '240',
+  currency: 'CRC',
 }
 
 const STORAGE_KEY = 'craf:amortization'
