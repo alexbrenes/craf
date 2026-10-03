@@ -6,9 +6,9 @@
     <script>
       // SPA fallback for GitHub Pages: encode the requested path into a query
       // string and bounce to the app root, where index.html restores it.
-      // pathSegmentsToKeep = 1 because the site lives under /craf/.
+      // pathSegmentsToKeep = 0 because the site lives at the domain root.
       (function () {
-        var pathSegmentsToKeep = 1
+        var pathSegmentsToKeep = 0
         var l = window.location
         l.replace(
           l.protocol + '//' + l.hostname + (l.port ? ':' + l.port : '') +
