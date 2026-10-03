@@ -1,12 +1,16 @@
+import { lazy } from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Layout from './components/Layout/Layout'
-import AmortizationCalculator from './components/AmortizationCalculator/AmortizationCalculator'
-import ExchangeLoanCalculator from './components/ExchangeLoanCalculator/ExchangeLoanCalculator'
-import AguinaldoCalculator from './components/AguinaldoCalculator/AguinaldoCalculator'
-import LiquidacionCalculator from './components/LiquidacionCalculator/LiquidacionCalculator'
-import SalarioNetoCalculator from './components/SalarioNetoCalculator/SalarioNetoCalculator'
 
-// Matches Vite's `base` so routing works under the GitHub Pages /craf/ path.
+// Each calculator loads as its own chunk on first navigation. This keeps the
+// heavy recharts dependency (only used by Amortization) out of the main bundle.
+const AmortizationCalculator = lazy(() => import('./components/AmortizationCalculator/AmortizationCalculator'))
+const ExchangeLoanCalculator = lazy(() => import('./components/ExchangeLoanCalculator/ExchangeLoanCalculator'))
+const AguinaldoCalculator = lazy(() => import('./components/AguinaldoCalculator/AguinaldoCalculator'))
+const LiquidacionCalculator = lazy(() => import('./components/LiquidacionCalculator/LiquidacionCalculator'))
+const SalarioNetoCalculator = lazy(() => import('./components/SalarioNetoCalculator/SalarioNetoCalculator'))
+
+// Matches Vite's `base` (now `/` for the custom domain alexbrenes.com).
 const BASENAME = import.meta.env.BASE_URL
 
 export default function App() {
